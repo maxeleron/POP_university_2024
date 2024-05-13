@@ -63,11 +63,11 @@ namespace Lab1_Threads
         {
             try
             {
-                Thread.Sleep(25 * 1000); // Sleep for 25 seconds
+                Thread.Sleep(25 * 1000); // Запускаємо таймер на 25 секунд
             }
             catch (ThreadInterruptedException)
             {
-                Thread.CurrentThread.Interrupt(); // Properly handle interruption
+                Thread.CurrentThread.Interrupt();
             }
             canBreak = true;
         }
