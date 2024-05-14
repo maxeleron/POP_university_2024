@@ -52,6 +52,7 @@ namespace Lab1_Threads
                 sum++;
             }
             Console.WriteLine( "Thread " + id + " - Total: " + sum );
+            Console.ReadKey();
         }
     }
 
