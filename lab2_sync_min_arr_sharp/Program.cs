@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 
 namespace Lab2
@@ -43,7 +44,8 @@ namespace Lab2
             long endTime = DateTime.Now.Ticks;
             long elapsedTime = (endTime - startTime) / TimeSpan.TicksPerMillisecond; // Конвертуємо час виконання в мілісекунди
 
-            // Print results
+            // Виведення результатів
+            Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine( "Час виконання в мілісекундах: " + elapsedTime );
             Console.WriteLine( "Значення мінімального елементу: " + globalMinValue );
             Console.WriteLine( "Індекс мінімального елементу: " + globalMinIndex );
