@@ -12,7 +12,8 @@ public class Main {
         // Створення та запуск потоків
         MinFinderThread[] threads = new MinFinderThread[threadCount];
         for (int i = 0; i < threadCount; i++) {
-            threads[i] = new MinFinderThread(i * (arrayLength / threadCount), (i + 1) * (arrayLength / threadCount), array);
+            threads[i] = new MinFinderThread(i * (arrayLength / threadCount),
+                    (i + 1) * (arrayLength / threadCount), array);
             threads[i].start();
         }
 
@@ -49,16 +50,15 @@ public class Main {
     private static int[] generateArray(int length) {
         int[] array = new int[length];
         Random random = new Random();
+        // Заповнюємо масив згенерованими позитивними числами
         for (int i = 0; i < length; i++) {
-            if (random.nextBoolean()) { // Заповнюємо масив згенерованими позитивними числами
-                array[i] = random.nextInt(100); // Випадкові додатні значення від 0 до 99
-            }
+            array[i] = random.nextInt(100); // Випадкові додатні значення від 0 до 99
         }
 
         // Генеруємо рандомний індекс в масиві
         int randomIndex = random.nextInt(array.length);
-
-        array[randomIndex] = -random.nextInt(100); // Записуємо від'ємне значення від -1 до -99 до випадкового елемента
+        // Записуємо від'ємне значення від -1 до -99 до випадкового елемента
+        array[randomIndex] = -random.nextInt(100);
 
         return array;
     }
