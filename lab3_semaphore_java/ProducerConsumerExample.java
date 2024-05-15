@@ -28,12 +28,6 @@ public class ProducerConsumerExample {
         this.totalProduction = totalProduction;
     }
 
-    public void Main(Semaphore items, Semaphore spaces) {
-        this.items = items;
-        this.spaces = spaces;
-        totalProduction = 0;
-    }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 

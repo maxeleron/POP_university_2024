@@ -5,39 +5,39 @@ using System.Threading;
 
 namespace lab3_semaphore_sharp
 {
-    public class ProducerConsumerExample
+    class Program
     {
-        class Program
-        {           
-            public static void Main(string[] args)
+        public static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.Write("Введіть об'єм сховища: ");
+            int capacity = int.Parse(Console.ReadLine());
+            Console.Write("Введіть кількість виробників: ");
+            int numProducers = int.Parse(Console.ReadLine());
+            Console.Write("Введіть кількість споживачів: ");
+            int numConsumers = int.Parse(Console.ReadLine());
+            Console.Write("Введіть кількість продукції, яка буде оброблена: ");
+            int totalProduction = int.Parse(Console.ReadLine());
+
+            // Створення екземпляра ProducerConsumerExample з заданими параметрами
+            ProducerConsumerExample example = new ProducerConsumerExample(capacity, totalProduction);
+
+            // Створення та запуск потоків виробників
+            for (int i = 0; i < numProducers; i++)
             {
-                Console.OutputEncoding = Encoding.UTF8;
-                Console.Write("Введіть об'єм сховища: ");
-                int capacity = int.Parse(Console.ReadLine());
-                Console.Write("Введіть кількість виробників: ");
-                int numProducers = int.Parse(Console.ReadLine());
-                Console.Write("Введіть кількість споживачів: ");
-                int numConsumers = int.Parse(Console.ReadLine());
-                Console.Write("Введіть кількість продукції, яка буде оброблена: ");
-                int totalProduction = int.Parse(Console.ReadLine());
+                new Thread(new Producer(example).Run).Start();
+            }
 
-                // Create an instance of ProducerConsumerExample with the given parameters
-                ProducerConsumerExample example = new ProducerConsumerExample(capacity, totalProduction);
-
-                // Create and start producer threads
-                for (int i = 0; i < numProducers; i++)
-                {
-                    new Thread(new Producer(example).Run).Start();
-                }
-
-                // Create and start consumer threads
-                for (int i = 0; i < numConsumers; i++)
-                {
-                    new Thread(new Consumer(example).Run).Start();
-                }
+            // Створення та запуск потоків споживачів
+            for (int i = 0; i < numConsumers; i++)
+            {
+                new Thread(new Consumer(example).Run).Start();
             }
         }
+    }
 
+    public class ProducerConsumerExample
+    {
         private Queue<int> queue = new Queue<int>();
 
         // Семафори для контролю доступу до сховища
