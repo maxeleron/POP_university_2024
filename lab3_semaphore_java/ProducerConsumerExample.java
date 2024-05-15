@@ -69,7 +69,7 @@ public class ProducerConsumerExample {
         if (producedCount < totalProduction) { // Додатково перевіряємо умову в критичній секції
             queue.offer(item);
             producedCount++;
-            System.out.println("Produced: " + item + " (Total Produced: " + producedCount + ")");
+            System.out.println("Виготовлено: " + item + " (Всього виготовлено: " + producedCount + ")");
         }
         mutex.release(); // Виходимо з критичної секції
         items.release(); // Збільшуємо кількість доступних елементів
@@ -83,7 +83,7 @@ public class ProducerConsumerExample {
         if (consumedCount < totalProduction) { // Перевіряємо умову споживання в критичній секції
             item = queue.poll();
             consumedCount++;
-            System.out.println("Consumed: " + item + " (Total Consumed: " + consumedCount + ")");
+            System.out.println("Спожито: " + item + " (Всього спожито: " + consumedCount + ")");
         }
         mutex.release(); // Виходимо з критичної секції
         spaces.release(); // Збільшуємо кількість вільних місць
